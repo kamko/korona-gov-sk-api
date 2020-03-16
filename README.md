@@ -4,13 +4,28 @@
 
 transforms data from https://www.korona.gov.sk/ into simple json
 
-```json
-{
-  "tested": 1436,
-  "negative": 1375,
-  "positive": 61
-}
-```
+- `/` or `/stats`
+    ```json
+    {
+      "id": 1,
+      "negative": 1523,
+      "positive": 72,
+      "tested": 1595,
+      "sync_time": "2020-03-16T21:57:10.599369"
+    }
+    ```
+- `/stats/all`
+    ```json
+     [
+      {
+        "id": 1,
+        "negative": 1523,
+        "positive": 72,
+        "sync_time": "2020-03-16T21:57:10.599369",
+        "tested": 1595
+      }
+    ]
+    ```
 
 ## configuration via environment vars
 ```
