@@ -6,7 +6,9 @@ from kgs.config import StaticConfiguration as StaticConf
 
 class KGSClient:
 
-    def __init__(self, url=StaticConf.KORONA_GOV_SK_URL, user_agent=StaticConf.USER_AGENT):
+    def __init__(self,
+                 url=StaticConf.KORONA_GOV_SK_URL,
+                 user_agent=StaticConf.USER_AGENT):
         self._target_url = url
         self._user_agent = user_agent
 
