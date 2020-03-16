@@ -1,5 +1,6 @@
 from kgs.client import KGSClient
 from kgs.db import Observation, db
+from kgs.tg_service import send_status
 
 client = KGSClient()
 
@@ -34,6 +35,7 @@ def load_latest_data(app):
         if _should_save(last_known, current):
             print(f'new data found! {current}', flush=True)
             _save_observation(current)
+            send_status(current)
 
 
 def get_latest():

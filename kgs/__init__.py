@@ -3,7 +3,6 @@ import atexit
 from apscheduler.schedulers.background import BackgroundScheduler
 from flask import Flask
 
-from kgs import kgov_service
 from kgs.config import AppConfiguration, StaticConfiguration
 from kgs.db import db
 from kgs.ma import ma
@@ -35,6 +34,8 @@ def register_plugins(app):
 
 
 def schedule_job(app):
+    from kgs import kgov_service
+    
     scheduler = BackgroundScheduler()
     scheduler.add_job(func=lambda: kgov_service.load_latest_data(app), trigger="interval",
                       seconds=AppConfiguration.CHECK_FREQUENCY)
