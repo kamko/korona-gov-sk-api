@@ -1,0 +1,23 @@
+name: Docker build
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Build image and publish
+        uses: elgohr/Publish-Docker-Github-Action@2.13
+        with:
+          name: kamko/korona-gov-sk-api
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+          snapshot: true
