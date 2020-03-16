@@ -1,3 +1,5 @@
+import logging
+
 from kgs.client import KGSClient
 from kgs.db import Observation, db
 from kgs.tg_service import send_status
@@ -26,14 +28,14 @@ def _should_save(old, new):
 
 def load_latest_data(app):
     with app.app_context():
-        print('fetching latest data', flush=True)
+        logging.info('fetching latest data')
         stats = client.load_stats()
 
         current = Observation(**stats)
         last_known = _latest_query().first()
 
         if _should_save(last_known, current):
-            print(f'new data found! {current}', flush=True)
+            logging.info(f'new data found! {current}')
             _save_observation(current)
             send_status(current)
 

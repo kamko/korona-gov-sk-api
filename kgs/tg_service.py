@@ -1,6 +1,11 @@
+import logging
+
 import telegram
 
 from kgs import AppConfiguration
+
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    level=logging.INFO)
 
 bot = telegram.Bot(token=AppConfiguration.TELEGRAM_TOKEN)
 
