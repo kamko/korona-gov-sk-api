@@ -12,6 +12,14 @@ transforms data from https://www.korona.gov.sk/ into simple json
 }
 ```
 
+## configuration via environment vars
+```
+SQLALCHEMY_DATABASE_URI=<path-to-sqllite-db>
+CHECK_FREQUENCY=<frequency-of-korona.gov.sk-scrapes-seconds>
+TELEGRAM_TOKEN=<telegram-bot-token>
+TELEGRAM_CHAT_ID=<telegram-chat-id>
+```
+
 ## disclaimer
 
 deploy and use only at your own responsibility
