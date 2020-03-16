@@ -17,7 +17,7 @@ def send_status(observation):
              f'- *Tested:* {observation.tested}\n'
              f'- *Negative:* {observation.negative}\n'
              f'- *Positive:* {observation.positive}\n'
-             f'- *Sync time:* {observation.sync_time}\n'
+             f'- *Sync time (UTC):* {observation.sync_time}\n'
              f'-- provided by korona.kamko.dev --',
         parse_mode="markdown"
     )

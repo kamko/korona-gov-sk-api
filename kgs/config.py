@@ -17,5 +17,5 @@ class AppConfiguration(metaclass=MetaFlaskEnv):
 
     CHECK_FREQUENCY = 5
 
-    TELEGRAM_TOKEN = "916489862:AAGnQF9HDvygKSfkfrCMLBfrQZ7R6vLWu5U"
-    TELEGRAM_CHAT_ID = "-427737103"
+    TELEGRAM_TOKEN = "<token>"
+    TELEGRAM_CHAT_ID = "<id>"
