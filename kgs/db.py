@@ -9,7 +9,7 @@ db = SQLAlchemy()
 class Observation(db.Model):
     id = Column(db.Integer, primary_key=True, autoincrement=True)
 
-    sync_time = Column(db.DateTime, default=datetime.now())
+    sync_time = Column(db.DateTime, default=datetime.utcnow)
 
     tested = Column(db.Integer)
     positive = Column(db.Integer)
