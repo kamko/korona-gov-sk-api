@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, redirect, url_for
+from flask import Blueprint, redirect, url_for
 
 import kgs.kgov_service as kgov_service
 from kgs.ma import ObservationSchema
@@ -20,4 +20,4 @@ def stats_all():
 
 @blueprint.route('/')
 def redirect_root():
-    return _obs_schema.redirect(url_for('.stats'), code=301)
+    return redirect(url_for('.stats'), code=301)
