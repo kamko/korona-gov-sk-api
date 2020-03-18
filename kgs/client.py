@@ -29,9 +29,3 @@ class KGSClient:
             'negative': values[1],
             'positive': values[2]
         }
-
-
-if __name__ == '__main__':
-    x = KGSClient()
-
-    print(x.load_stats())
