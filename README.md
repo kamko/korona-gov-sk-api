@@ -38,6 +38,9 @@ SLACK_TARGETS = "<webhookid>;<webhookid>" # multiple separated by ;
 
 note: `https://hooks.slack.com/services/<webhookid>`
 
+## requirements
+python 3.7+
+
 ## disclaimer
 
 deploy and use only at your own responsibility
