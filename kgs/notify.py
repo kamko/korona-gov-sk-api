@@ -24,6 +24,8 @@ class NotificationPipeline:
         self.pipeline = list(itertools.chain.from_iterable(
             (i(conf, _format_msg) for i in NotificationPipeline._notifier_providers)))
 
+        logging.info(f'Initialized notification pipeline with {len(self.pipeline)} targets')
+
     def send_all(self, observation):
         for i in self.pipeline:
             try:
