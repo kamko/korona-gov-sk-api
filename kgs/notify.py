@@ -75,4 +75,5 @@ class SlackNotifier:
         if conf.SLACK_TARGETS is None:
             return []
 
-        return [SlackNotifier(i, msg_provider) for i in conf.SLACK_TARGETS.rstrip(';').split(';')]
+        return [SlackNotifier(i, msg_provider)
+                for i in conf.SLACK_TARGETS.rstrip(';').split(';')]
