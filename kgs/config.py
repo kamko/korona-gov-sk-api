@@ -17,5 +17,5 @@ class AppConfiguration(metaclass=MetaFlaskEnv):
 
     CHECK_FREQUENCY = 5
 
-    TELEGRAM_TOKEN = "<token>"
-    TELEGRAM_CHAT_ID = "<id>"
+    TELEGRAM_TARGETS = None  # "<token>~<chat-id>;<token>~<chat-id>;"
+    SLACK_TARGETS = None  # "<webhookid>;<webhookid>;"
