@@ -11,7 +11,7 @@ def _format_msg(observation):
            f'- *Negative:* {observation.negative}\n' \
            f'- *Positive:* {observation.positive}\n' \
            f'- *Sync time (UTC):* {observation.sync_time}\n' \
-           f'View history at: korona.kamko.dev/stats/all'
+           f'View history at: https://korona.kamko.dev/stats/all'
 
 
 class NotificationPipeline:
@@ -29,9 +29,9 @@ class NotificationPipeline:
     def send_all(self, observation):
         for i in self.pipeline:
             try:
-                i.send(observation)
-            except Exception:
-                logging.error(f'failed to send notification to {i}')
+                i.send_status(observation)
+            except Exception as e:
+                logging.error(f'failed to send notification to {i}, error={e}')
 
 
 class TelegramNotifier:

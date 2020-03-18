@@ -42,7 +42,8 @@ def schedule_job(app):
     from kgs.notify import NotificationPipeline
 
     scheduler = BackgroundScheduler()
-    scheduler.add_job(func=lambda: kgov_service.load_latest_data(app, NotificationPipeline(AppConfiguration)),
+    notification_pipeline = NotificationPipeline(AppConfiguration)
+    scheduler.add_job(func=lambda: kgov_service.load_latest_data(app, notification_pipeline),
                       trigger="interval",
                       seconds=AppConfiguration.CHECK_FREQUENCY)
     print("scheduler - started")
