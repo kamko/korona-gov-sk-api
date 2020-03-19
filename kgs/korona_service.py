@@ -50,4 +50,4 @@ class KoronaService:
                 logging.info(f'new data found! {current}')
                 _save_observation(current)
                 if notify_pipeline is not None:
-                    notify_pipeline.send_all(current)
+                    notify_pipeline.send_all(current, last_known)

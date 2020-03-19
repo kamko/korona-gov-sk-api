@@ -7,13 +7,21 @@ import telegram
 from kgs.config import AppConfiguration
 
 
-def _format_msg(observation):
+def _format_msg(new, old):
+    def row(item, cur, prev):
+        out = f'- *{item}:* {cur}'
+        diff = cur - prev
+        if diff != 0:
+            out += f' (+*{diff}*)'
+
+        return out + '\n'
+
     return f'News from *{AppConfiguration.DATA_SOURCE}*:\n' \
-           f'- *Tested:* {observation.tested}\n' \
-           f'- *Negative:* {observation.negative}\n' \
-           f'- *Positive:* {observation.positive}\n' \
-           f'- *Sync time (UTC):* {observation.sync_time}\n' \
-           f'View history at: https://korona.kamko.dev/stats/all'
+           + row('Tested', new.tested, old.tested) \
+           + row('Negative', new.negative, old.negative) \
+           + row('Positive', new.positive, old.positive) \
+           + f'- *Sync time (UTC):* {new.sync_time}\n' \
+             f'View history at: https://korona.kamko.dev/stats/all'
 
 
 class NotificationPipeline:
@@ -28,10 +36,10 @@ class NotificationPipeline:
 
         logging.info(f'Initialized notification pipeline with {len(self.pipeline)} targets')
 
-    def send_all(self, observation):
+    def send_all(self, cur, prev):
         for i in self.pipeline:
             try:
-                i.send_status(observation)
+                i.send_status(cur, prev)
             except Exception as e:
                 logging.error(f'failed to send notification to {i}, error={e}')
 
@@ -43,10 +51,10 @@ class TelegramNotifier:
         self.chat_id = chat_id
         self.msg_provider = msg_provider
 
-    def send_status(self, observation):
+    def send_status(self, cur, prev):
         self.bot.send_message(
             chat_id=self.chat_id,
-            text=self.msg_provider(observation),
+            text=self.msg_provider(cur, prev),
             parse_mode="markdown"
         )
 
@@ -66,11 +74,11 @@ class SlackNotifier:
         self.webhook_id = webhook_id
         self.msg_provider = msg_provider
 
-    def send_status(self, observation):
+    def send_status(self, cur, prev):
         requests.post(
             url=f'https://hooks.slack.com/services/{self.webhook_id}',
             json={
-                'text': self.msg_provider(observation)
+                'text': self.msg_provider(cur, prev)
             }
         )
 
