@@ -18,10 +18,12 @@ future==0.18.2
 idna==2.9
 itsdangerous==1.1.0
 Jinja2==2.11.1
+jsonpath-ng==1.5.1
 MarkupSafe==1.1.1
 marshmallow==3.5.1
 marshmallow-sqlalchemy==0.22.3
 multidict==4.7.5
+ply==3.11
 pycparser==2.20
 python-telegram-bot==12.4.2
 pytz==2019.3
