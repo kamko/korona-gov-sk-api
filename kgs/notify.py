@@ -4,9 +4,11 @@ import logging
 import requests
 import telegram
 
+from kgs.config import AppConfiguration
+
 
 def _format_msg(observation):
-    return f'News from *korona.gov.sk*:\n' \
+    return f'News from *{AppConfiguration.DATA_SOURCE}*:\n' \
            f'- *Tested:* {observation.tested}\n' \
            f'- *Negative:* {observation.negative}\n' \
            f'- *Positive:* {observation.positive}\n' \

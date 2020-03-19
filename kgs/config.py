@@ -7,6 +7,7 @@ class StaticConfiguration():
     USER_AGENT = f'{APP_NAME}:{VERSION}'
 
     KORONA_GOV_SK_URL = 'https://www.korona.gov.sk/'
+    VIRUS_KORONA_API_URL = 'https://virus-korona.sk/api.php'
 
 
 class AppConfiguration(metaclass=MetaFlaskEnv):
@@ -19,3 +20,5 @@ class AppConfiguration(metaclass=MetaFlaskEnv):
 
     TELEGRAM_TARGETS = None  # "<token>~<chat-id>;<token>~<chat-id>;"
     SLACK_TARGETS = None  # "<webhookid>;<webhookid>;"
+
+    DATA_SOURCE = 'korona.gov.sk' # or 'virus-korona.sk'

@@ -6,6 +6,7 @@ from flask import Flask
 
 from kgs.config import AppConfiguration, StaticConfiguration
 from kgs.db import db
+from kgs.korona_service import KoronaService
 from kgs.ma import ma
 from kgs.root import blueprint as root_blueprint
 
@@ -38,12 +39,21 @@ def register_plugins(app):
 
 
 def schedule_job(app):
-    from kgs import kgov_service
     from kgs.notify import NotificationPipeline
+    from kgs.client import KGSClient, VKClient
 
     scheduler = BackgroundScheduler()
+
+    client_map = {
+        'korona.gov.sk': KGSClient,
+        'virus-korona.sk': VKClient
+    }
+
+    client = client_map[AppConfiguration.DATA_SOURCE]()
+    service = KoronaService(app, client)
+
     notification_pipeline = NotificationPipeline(AppConfiguration)
-    scheduler.add_job(func=lambda: kgov_service.load_latest_data(app, notification_pipeline),
+    scheduler.add_job(func=lambda: service.load_latest_data(app, notification_pipeline),
                       trigger="interval",
                       seconds=AppConfiguration.CHECK_FREQUENCY)
     print("scheduler - started")
