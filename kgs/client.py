@@ -16,7 +16,8 @@ class KGSClient:
     def do_get(self, url):
         return requests.get(
             url=url,
-            headers={'user-agent': self._user_agent}
+            headers={'user-agent': self._user_agent},
+            timeout=10
         )
 
     def load_stats(self):
@@ -43,7 +44,8 @@ class VKClient:
     def do_get(self, url):
         return requests.get(
             url=url,
-            headers={'user-agent': self._user_agent}
+            headers={'user-agent': self._user_agent},
+            timeout=10
         )
 
     def load_stats(self):
