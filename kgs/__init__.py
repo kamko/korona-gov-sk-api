@@ -40,13 +40,12 @@ def register_plugins(app):
 
 def schedule_job(app):
     from kgs.notify import NotificationPipeline
-    from kgs.client import KGSClient, VKClient
+    from kgs.client import KGSClient
 
     scheduler = BackgroundScheduler()
 
     client_map = {
         'korona.gov.sk': KGSClient,
-        'virus-korona.sk': VKClient
     }
 
     client = client_map[AppConfiguration.DATA_SOURCE]()

@@ -12,7 +12,8 @@ def _format_msg(new, old):
         out = f'- *{item}:* {cur}'
         diff = cur - prev
         if diff != 0:
-            out += f' (+*{diff}*)'
+            sign = '+' if diff >= 0 else '-'
+            out += f' (*{sign}{abs(diff)}*)'
 
         return out + '\n'
 
