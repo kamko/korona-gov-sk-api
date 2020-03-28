@@ -9,22 +9,26 @@ optionally sends notifications to telegram (via bot) or slack (via webhook)
 - `/` or `/stats`
     ```json
     {
-      "id": 1,
-      "negative": 1523,
-      "positive": 72,
-      "tested": 1595,
-      "sync_time": "2020-03-16T21:57:10.599369"
+        "id": 26,
+        "tested": 6411,
+        "negative": 6119,
+        "positive": 292,
+        "recovered": 2,
+        "dead": 0, 
+        "sync_time": "2020-03-28T21:54:26.220233"
     }
     ```
 - `/stats/all`
     ```json
      [
       {
-        "id": 1,
-        "negative": 1523,
-        "positive": 72,
-        "sync_time": "2020-03-16T21:57:10.599369",
-        "tested": 1595
+        "id": 26,
+        "tested": 6411,
+        "negative": 6119,
+        "positive": 292,
+        "recovered": 2,
+        "dead": 0, 
+        "sync_time": "2020-03-28T21:54:26.220233"
       }
     ]
     ```

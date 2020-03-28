@@ -19,7 +19,9 @@ def _should_save(old, new):
 
     return old.negative != new.negative \
            or old.positive != new.positive \
-           or old.tested != new.tested
+           or old.tested != new.tested \
+           or old.recovered != new.recovered \
+           or old.dead != new.dead
 
 
 def get_latest():

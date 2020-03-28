@@ -26,12 +26,18 @@ class KGSClient:
 
         positive_path_expr = jsonpath_ng.parse('$.tiles.k26.data.d[*].v')
         negative_path_expr = jsonpath_ng.parse('$.tiles.k25.data.d[*].v')
+        recovered_path_expr = jsonpath_ng.parse('$.tiles.k34.data.d[*].v')
+        dead_path_expr = jsonpath_ng.parse('$.tiles.k35.data.d[*].v')
 
         positive = list(positive_path_expr.find(json))[-1].value
         negative = list(negative_path_expr.find(json))[-1].value
+        recovered = list(recovered_path_expr.find(json))[-1].value
+        dead = list(dead_path_expr.find(json))[-1].value
 
         return {
             'tested': positive + negative,
             'negative': negative,
-            'positive': positive
+            'positive': positive,
+            'recovered': recovered,
+            'dead': dead
         }

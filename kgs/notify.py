@@ -21,6 +21,8 @@ def _format_msg(new, old):
            + row('Tested', new.tested, old.tested) \
            + row('Negative', new.negative, old.negative) \
            + row('Positive', new.positive, old.positive) \
+           + row('Recovered', new.recovered, old.recovered) \
+           + row('Dead', new.dead, old.dead) \
            + f'- *Sync time (UTC):* {new.sync_time}\n' \
              f'View history at: https://korona.kamko.dev/stats/all'
 

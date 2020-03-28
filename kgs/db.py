@@ -14,6 +14,8 @@ class Observation(db.Model):
     tested = Column(db.Integer)
     positive = Column(db.Integer)
     negative = Column(db.Integer)
+    recovered = Column(db.Integer)
+    dead = Column(db.Integer)
 
     def __init__(self, **kwargs):
         super(Observation, self).__init__(**kwargs)
@@ -22,5 +24,7 @@ class Observation(db.Model):
         return f'<Observation {self.id},' \
                f' tested={self.tested},' \
                f' positive={self.positive},' \
-               f' negative={self.negative}' \
+               f' negative={self.negative},' \
+               f' recovered={self.recovered},' \
+               f' dead={self.dead},' \
                f' sync_time={self.sync_time}>'
