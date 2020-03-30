@@ -32,6 +32,8 @@ optionally sends notifications to telegram (via bot) or slack (via webhook)
       }
     ]
     ```
+## live version
+https://korona.kamko.dev
 
 ## configuration via environment vars
 ```
