@@ -4,7 +4,7 @@
 
 transforms data from https://www.korona.gov.sk/ into simple json. (and saves history)
 
-optionally sends notifications to telegram (via bot) or slack (via webhook)
+optionally sends notifications to telegram (via bot), slack (via webhook), or discord (via webhook)
 
 - `/` or `/stats`
     ```json
@@ -41,10 +41,11 @@ SQLALCHEMY_DATABASE_URI=<path-to-sqllite-db>
 CHECK_FREQUENCY=<frequency-of-korona.gov.sk-scrapes-seconds>
 TELEGRAM_TARGETS = "<token>~<chat-id>;<token>~<chat-id>" # multiple separated by ;
 SLACK_TARGETS = "<webhookid>;<webhookid>" # multiple separated by ;
+DISCORD_TARGETS = "<webhookid>;<webhookid>" # multiple separated by ;
 ```
 
-note: `https://hooks.slack.com/services/<webhookid>`
-
+- note: `https://hooks.slack.com/services/<webhookid>`
+- note: `https://discordapp.com/api/webhooks/<webhookid>`
 ## requirements
 python 3.7+
 

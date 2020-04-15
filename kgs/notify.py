@@ -30,7 +30,8 @@ def _format_msg(new, old):
 class NotificationPipeline:
     _notifier_providers = [
         lambda conf, formatter: TelegramNotifier.make_notifiers(conf, formatter),
-        lambda conf, formatter: SlackNotifier.make_notifier(conf, formatter)
+        lambda conf, formatter: SlackNotifier.make_notifier(conf, formatter),
+        lambda conf, formatter: DiscordNotifier.make_notifier(conf, formatter)
     ]
 
     def __init__(self, conf):
@@ -92,3 +93,25 @@ class SlackNotifier:
 
         return [SlackNotifier(i, msg_provider)
                 for i in conf.SLACK_TARGETS.rstrip(';').split(';')]
+
+
+class DiscordNotifier:
+    def __init__(self, webhook_id, msg_provider):
+        self.webhook_id = webhook_id
+        self.msg_provider = msg_provider
+
+    def send_status(self, cur, prev):
+        requests.post(
+            url=f'https://discordapp.com/api/webhooks/{self.webhook_id}/slack',
+            json={
+                'text': self.msg_provider(cur, prev)
+            }
+        )
+
+    @staticmethod
+    def make_notifier(conf, msg_provider):
+        if conf.DISCORD_TARGETS is None:
+            return []
+
+        return [DiscordNotifier(i, msg_provider)
+                for i in conf.DISCORD_TARGETS.rstrip(';').split(';')]

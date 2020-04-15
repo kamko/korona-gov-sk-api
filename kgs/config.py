@@ -19,5 +19,6 @@ class AppConfiguration(metaclass=MetaFlaskEnv):
 
     TELEGRAM_TARGETS = None  # "<token>~<chat-id>;<token>~<chat-id>;"
     SLACK_TARGETS = None  # "<webhookid>;<webhookid>;"
+    DISCORD_TARGETS = None # "<webhookid>;<webhookid>;"
 
     DATA_SOURCE = 'korona.gov.sk'
